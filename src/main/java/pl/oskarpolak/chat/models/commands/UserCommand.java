@@ -1,0 +1,25 @@
+package pl.oskarpolak.chat.models.commands;
+
+import pl.oskarpolak.chat.models.UserModel;
+
+import java.util.List;
+
+/**
+ * Created by lukasz on 2017-11-05.
+ */
+public class UserCommand implements Command {
+    @Override
+    public void parseCommand(UserModel model, List<UserModel> userList, String... args) {
+        userList.forEach(s -> model.sendMessage("` "+s.getNickname()));
+    }
+
+    @Override
+    public int argsCount() {
+        return 0;
+    }
+
+    @Override
+    public String error() {
+        return null;
+    }
+}

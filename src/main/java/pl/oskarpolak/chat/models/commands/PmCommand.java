@@ -1,6 +1,9 @@
 package pl.oskarpolak.chat.models.commands;
 
+
 import org.apache.catalina.User;
+
+
 import pl.oskarpolak.chat.models.UserModel;
 
 import java.util.Arrays;
@@ -12,8 +15,8 @@ public class PmCommand implements Command {
     @Override
     public void parseCommand(UserModel sender, List<UserModel> userList, String... args) {
         Optional<UserModel> toWho = userList.stream()
-                                        .filter(s -> s.getNickname().equals(args[0]))
-                                        .findAny();
+                .filter(s -> s.getNickname().equals(args[0]))
+                .findAny();
         args[0]  = "";
 
         if(toWho.isPresent()){

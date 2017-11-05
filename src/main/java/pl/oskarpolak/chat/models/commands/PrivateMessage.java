@@ -1,19 +1,20 @@
 package pl.oskarpolak.chat.models.commands;
 
-import org.apache.catalina.User;
 import pl.oskarpolak.chat.models.UserModel;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-
-public class KickCommand implements Command {
+/**
+ * Created by lukasz on 2017-11-05.
+ */
+public class PrivateMessage implements Command {
     @Override
     public void parseCommand(UserModel sender, List<UserModel> userModelList, String... args) {
-        String nickToKick = args[0];
+        String nickToSendPm = args[0];
         Optional<UserModel> userModel = userModelList.stream()
-                .filter(s -> s.getNickname().equals(nickToKick))
+                .filter(s -> s.getNickname().equals(nickToSendPm))
                 .findAny();
 
         if(userModel.isPresent()){
@@ -29,11 +30,11 @@ public class KickCommand implements Command {
 
     @Override
     public int argsCount() {
-        return 1;
+        return 2;
     }
 
     @Override
     public String error() {
-        return "Użycie komendy to: /kick tutaj_nick";
+        return "Użycie komendy to: /pm nickname";
     }
 }
